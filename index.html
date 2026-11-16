@@ -41,14 +41,14 @@ async function loadMarketplaceProducts(){
  select.innerHTML='<option value="">Loading products…</option>';status.textContent='Connecting to RIANDERBLOG Marketplace…';
  try{
   const endpoint=RB_SUPABASE_URL+'/rest/v1/products?select=id,name,description,category,price,currency,image_url,product_image_urls,affiliate_url,available_colours,delivery_days,minimum_order_quantity,stock_quantity&is_active=eq.true&review_status=eq.approved&order=created_at.desc';
-  const response=await fetch(endpoint,{headers:{apikey:RB_PUBLIC_KEY,Authorization:'Bearer '+RB_PUBLIC_KEY}});
+  const response=await fetch(endpoint,{headers:{apikey:RB_PUBLIC_KEY}});
   if(!response.ok)throw new Error('Marketplace returned '+response.status);
   const rows=await response.json();window.downriaProducts=rows;
   select.innerHTML='<option value="">Choose a product…</option>'+rows.map(p=>'<option value="'+String(p.id)+'">'+escapeBridge(p.name)+' — '+escapeBridge(p.currency||'')+' '+escapeBridge(p.price??'')+'</option>').join('');
   status.textContent=rows.length+' active, approved product(s) loaded from RIANDERBLOG.';
   preview.textContent=rows.length?'Select a product to import its saved details.':'No active approved products are currently listed.';
   if(!rows.length)select.innerHTML='<option value="">No published products found</option>';
- }catch(e){select.innerHTML='<option value="">Could not load products</option>';status.textContent='Connection error: '+e.message;preview.textContent='You can still enter product details manually.';}
+ }catch(e){select.innerHTML='<option value="">Marketplace connection unavailable</option>';status.textContent='Could not load Marketplace products. Check your internet connection or the Marketplace public read permissions.';preview.textContent='You can still enter product details manually. Tap Refresh products to try again.';}
 }
 $('marketProducts').addEventListener('change',()=>{
  const p=(window.downriaProducts||[]).find(x=>String(x.id)===$('marketProducts').value);if(!p)return;

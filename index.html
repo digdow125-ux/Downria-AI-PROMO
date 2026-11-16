@@ -26,6 +26,47 @@
 <button class="btn" id="generate" style="width:100%">Generate promotion ✨</button><div class="notice">This starter version creates text-based promotional content in your browser. AI image and video generation will be connected through secure provider APIs in the next stage; API keys and credits are not included yet.</div></div>
 <div class="panel"><h2>Your creation</h2><p class="sub">Your generated content will appear here.</p><div class="result empty" id="result">✨<br>Fill in your product details, choose a content type and tap Generate.</div><div class="result-actions"><button class="btn secondary" id="copy">Copy text</button><button class="btn secondary" id="share">Share</button></div><p class="small" id="status" aria-live="polite">Ready when you are.</p></div></section>
 <section><div class="eyebrow">Inside the studio</div><h2 style="margin:7px 0 14px">Everything to promote your products</h2><div class="features"><div class="feature">✍️<b>Social captions</b><p>Write engaging posts for your audience.</p></div><div class="feature">📣<b>Product adverts</b><p>Highlight benefits and calls to action.</p></div><div class="feature">🎨<b>Poster & image ideas</b><p>Prepare concepts for visual campaigns.</p></div><div class="feature">🎬<b>Video scripts</b><p>Plan short product promo videos.</p></div></div></section>
+
+<section class="panel" id="academy" style="margin:22px 0">
+ <div class="eyebrow">RIANDERBLOG education & growth</div>
+ <h2 style="font-size:25px;margin:8px 0">🎓 Marketplace Academy & Daily Media Studio</h2>
+ <p class="sub">Create daily educational content about how RIANDERBLOG works, its shopping journey and marketplace activities. Topics are based on the current marketplace tutorial plan.</p>
+ <div class="fields">
+  <div class="field"><label for="academyTopic">DAILY LESSON / POST TOPIC</label><select id="academyTopic">
+   <option value="welcome">What is RIANDERBLOG Marketplace?</option>
+   <option value="account">Create an account and sign in</option>
+   <option value="search">Search and choose products</option>
+   <option value="cart">Add products to your cart</option>
+   <option value="checkout">Review your cart and place an order</option>
+   <option value="updates">Understand order updates</option>
+   <option value="delivery">Delivery and receiving your order</option>
+   <option value="supplier">Using Visit Supplier and purchasing safely</option>
+   <option value="seller">Seller product listings and product information</option>
+   <option value="trust">Shop carefully: check descriptions, prices and terms</option>
+  </select></div>
+  <div class="field"><label for="academyFormat">CONTENT FORMAT</label><select id="academyFormat"><option value="both">Video script + social caption</option><option value="video">Video script only</option><option value="post">Social caption only</option></select></div>
+ </div>
+ <div style="display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 15px">
+  <button class="btn" id="academyGenerate" type="button">Create today's content ✨</button>
+  <button class="btn secondary" id="academyCopy" type="button">Copy content</button>
+  <a class="btn secondary" href="https://digdow125-ux.github.io/Rianderblog/promotion-hub/tutorial-maker.html" target="_blank" rel="noopener" style="text-decoration:none">Open RIANDERBLOG Video Creator ↗</a>
+ </div>
+ <div class="result" id="academyResult" style="min-height:180px">Choose a topic and tap “Create today's content”.</div>
+ <p class="small" id="academyStatus" aria-live="polite">Daily campaign target: 20:00 Africa/Blantyre. This prepares content; it does not publish to social accounts automatically.</p>
+ <div style="border-top:1px solid var(--line);margin-top:18px;padding-top:15px">
+  <h3 style="margin:0 0 8px">Daily publishing plan</h3>
+  <div class="features" style="grid-template-columns:repeat(auto-fit,minmax(135px,1fr));margin:10px 0">
+   <div class="feature"><b>Monday</b><p>Marketplace introduction and account setup</p></div>
+   <div class="feature"><b>Tuesday</b><p>Product discovery and search tips</p></div>
+   <div class="feature"><b>Wednesday</b><p>Cart, ordering and checkout journey</p></div>
+   <div class="feature"><b>Thursday</b><p>Order updates and delivery</p></div>
+   <div class="feature"><b>Friday</b><p>Seller listings and product information</p></div>
+   <div class="feature"><b>Saturday</b><p>Safe shopping and supplier guidance</p></div>
+   <div class="feature"><b>Sunday</b><p>Marketplace highlights and community questions</p></div>
+  </div>
+ </div>
+ <div class="notice">Automatic Facebook and Instagram publishing still requires an authorised social-media connection and secure publishing service. Keep this page open only for creating drafts; do not paste access tokens or passwords into this page.</div>
+</section>
 <footer class="foot"><span>© <span id="year"></span> DOWNRIA AI PROMO</span><span>Made to grow RIANDERBLOG Marketplace · Malawi</span></footer></div>
 <script>
 let kind='caption';document.querySelectorAll('.type').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.type').forEach(x=>x.classList.remove('active'));b.classList.add('active');kind=b.dataset.kind}));
@@ -63,6 +104,31 @@ $('refreshProducts').addEventListener('click',loadMarketplaceProducts);
 loadMarketplaceProducts();
 // Pick up newly published Marketplace products automatically while this page stays open.
 setInterval(loadMarketplaceProducts,60000);
+
+
+const academyLessons={
+welcome:{title:"Welcome to RIANDERBLOG Marketplace",aim:"Introduce the marketplace and explain that shoppers can discover products and follow the available purchase route.",steps:["Open the RIANDERBLOG Marketplace website.","Show the homepage and explain how visitors begin browsing.","Explain that product descriptions, prices and seller information should be checked before making a decision.","Invite viewers to explore the marketplace."],cta:"Visit RIANDERBLOG Marketplace and discover what is available."},
+account:{title:"Create an account and sign in",aim:"Help a new visitor understand the account access step.",steps:["Open the RIANDERBLOG Marketplace website.","Choose the account or sign-in option shown on the live website.","Follow the on-screen instructions and enter only your own correct details.","After signing in, explore the options available to your account."],cta:"Visit RIANDERBLOG and follow the on-screen account instructions."},
+search:{title:"Search and choose products",aim:"Show customers how to find products and compare listing information.",steps:["Open the marketplace and find the product search or browsing area.","Enter a product name or browse the available categories.","Open a listing and read its description carefully.","Check the displayed price, images and other available product details before deciding."],cta:"Start exploring products on RIANDERBLOG Marketplace."},
+cart:{title:"Add products to your cart",aim:"Explain how shoppers collect products they are interested in.",steps:["Open a product listing you are interested in.","Review the product information before continuing.","Tap Add to Cart if that option is available.","Open your cart to review the products and quantities selected."],cta:"Explore the marketplace and build your shopping cart."},
+checkout:{title:"Review your cart and place an order",aim:"Show the customer how to review selected products and continue the order process.",steps:["Open your cart and check each selected product.","Confirm the quantities and product details.","Follow the checkout or order instructions displayed by the marketplace.","Review all displayed terms before confirming an order."],cta:"Visit RIANDERBLOG Marketplace and follow the checkout instructions shown."},
+updates:{title:"Understand order updates",aim:"Explain why customers should check the order information and messages available to them.",steps:["Sign in to the account used for the order.","Open the order area or order details available on the website.","Read the latest status and any instructions displayed.","If anything is unclear, use the marketplace's available support or contact route."],cta:"Keep your order information handy and check the marketplace for updates."},
+delivery:{title:"Delivery and receiving your order",aim:"Help customers understand the importance of checking delivery information.",steps:["Open the relevant order details.","Read the delivery information and any estimated timeframe displayed.","Follow the delivery instructions provided for that order.","Check the received item against the order details and contact the seller or support route if there is a problem."],cta:"Check the delivery details shown for your order on RIANDERBLOG."},
+supplier:{title:"Using Visit Supplier and purchasing safely",aim:"Explain the supplier hand-off and safe purchasing checks.",steps:["Open the relevant product or cart area.","If Visit Supplier is shown, understand that it takes you to the supplier's website.","Review the supplier's price, delivery and payment terms on that website.","Only continue when you understand the supplier's terms and are comfortable proceeding."],cta:"Read supplier terms carefully before making a purchase."},
+seller:{title:"Seller product listings and product information",aim:"Encourage accurate, useful product listings.",steps:["Prepare clear product photos that show the actual item.","Write an accurate product name and description.","Enter the correct price and any available stock or option details in the seller tools provided to your account.","Review the listing for accuracy before submitting or publishing it."],cta:"Sellers: keep your marketplace product information clear and up to date."},
+trust:{title:"Shop carefully: check descriptions, prices and terms",aim:"Promote informed decisions and safe shopping.",steps:["Read the full product description.","Compare the displayed photos with the written details.","Check the price, delivery details and supplier terms shown.","Ask questions through the available contact route if important information is missing."],cta:"Make informed choices every time you shop on RIANDERBLOG."}
+};
+function academyCreate(){
+ const key=$('academyTopic').value,format=$('academyFormat').value,lesson=academyLessons[key];
+ const hook="Want to know how RIANDERBLOG Marketplace works? Here is a quick guide.";
+ const script="RIANDERBLOG MARKETPLACE · "+lesson.title.toUpperCase()+"\n\nOPENING (0–5 sec)\n"+hook+"\n\nWHY IT MATTERS\n"+lesson.aim+"\n\nSTEP-BY-STEP DEMONSTRATION\n"+lesson.steps.map((s,i)=>(i+1)+". "+s).join("\n")+"\n\nCLOSING\n"+lesson.cta+"\n\nVIDEO PRODUCTION NOTES\nFormat: vertical 9:16. Use a real screen recording of the current RIANDERBLOG website, zoom in on the relevant buttons, add readable captions and clear narration. Do not show private customer details, passwords or payment information.";
+ const caption="📘 RIANDERBLOG MARKETPLACE GUIDE\n\n"+lesson.title+"\n\n"+lesson.aim+"\n\n"+lesson.steps.map((s,i)=>(i+1)+". "+s).join("\n")+"\n\n"+lesson.cta+"\n\nExplore: https://digdow125-ux.github.io/Rianderblog/\n\n#RIANDERBLOG #Marketplace #ShopOnline #Malawi #OnlineShopping";
+ let output=format==="video"?script:format==="post"?caption:script+"\n\n================ SOCIAL MEDIA CAPTION ================\n"+caption;
+ $('academyResult').textContent=output;
+ $('academyStatus').textContent="Draft created for "+lesson.title+". Check the live website steps and wording before publishing.";
+}
+$('academyGenerate').addEventListener('click',academyCreate);
+$('academyCopy').addEventListener('click',async()=>{const t=$('academyResult').textContent;if(!t||t.startsWith('Choose a topic'))return;try{await navigator.clipboard.writeText(t);$('academyStatus').textContent='Content copied. Paste it into your video editor or social post.'}catch(e){$('academyStatus').textContent='Clipboard unavailable. Select and copy the content manually.'}});
 
 $('year').textContent=new Date().getFullYear();
 </script></body></html>
